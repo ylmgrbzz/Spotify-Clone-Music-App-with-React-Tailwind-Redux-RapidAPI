@@ -2,22 +2,24 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Error, Loader, SongCard } from "../components";
 import { selectGenreListId } from "../redux/features/playerSlice";
-// import { useGetSongsByGenreQuery } from "../redux/services/shazamCore";
 import { genres } from "../assets/constants";
+import { useGetSongsByGenreQuery } from "../redux/services/shazamCore";
 
 const Discover = () => {
   const dispatch = useDispatch();
   const { genreListId } = useSelector((state) => state.player);
   const { activeSong, isPlaying } = useSelector((state) => state.player);
-  //   const { data, isFetching, error } = useGetSongsByGenreQuery(
-  //     genreListId || "POP"
-  //   );
+  const { data, isFetching, error } = useGetSongsByGenreQuery(
+    genreListId || "POP"
+  );
 
-  //   if (isFetching) return <Loader />;
+  console.log(data);
 
-  //   if (error) return <Error message={error} />;
+  if (isFetching) return <Loader />;
 
-  //   const genreTitle = genres.find((genre) => genre.value === genreListId).title;
+  if (error) return <Error message={error} />;
+
+  const genreTitle = genres.find((genre) => genre.value === genreListId).title;
 
   return (
     <div className="flex flex-col">
