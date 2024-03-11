@@ -1,5 +1,28 @@
-const Loader = () => (
-  <div>Loader</div>
-);
+import { useState, useEffect } from "react";
+import { loader } from "../assets";
+
+const Loader = ({ title }) => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisible(false);
+    }, 60000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <>
+      {isVisible && (
+        <div className=" w-full flex justify-center items-center flex-col">
+          <img src={loader} alt="loader" className="w-32 h-32 object-contain" />
+          <h1 className="font-bold text-2xl text-white mt-2">
+            {title || "Loading"}
+          </h1>
+        </div>
+      )}
+    </>
+  );
+};
 
 export default Loader;
