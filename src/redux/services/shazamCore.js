@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const shazamCore = createApi({
+export const shazamCoreApi = createApi({
   reducerPath: "shazamCoreApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://shazam-core.p.rapidapi.com/",
@@ -45,4 +45,4 @@ export const {
   useGetArtistDetailsQuery,
   useGetSongDetailsQuery,
   useGetSongRelatedQuery,
-} = shazamCore;
+} = shazamCoreApi;
